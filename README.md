@@ -13,4 +13,4 @@ A python wrapper for the BBC monitoring API. The wrapper currently has limitted 
 * `NB1_demoing_article_extraction.ipynb`: a notebook demonstrating a usecase for the API.
 
 ## API Key and registration
-Users must have a valid API key available from [bbc-monitoring](https://monitoring.bbc.co.uk/), and the account must be fully activated. The API-key should be stored in a JSON flie structured as `{"username":<username>, "key":<key>}`. 
+Users must have a valid API key available from [bbc-monitoring](https://monitoring.bbc.co.uk/), and the account must be fully activated. The API-key should be stored in a JSON flie structured as `{"username":<username>, "password":<password>}`. A template key is provided in `data/fake_key.json`. 
