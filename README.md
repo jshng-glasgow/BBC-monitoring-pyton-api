@@ -2,7 +2,7 @@
 A python wrapper for the BBC monitoring API. The wrapper currently has limitted ans specific functionality. Current use cases are limitted to searching for text within headlines and extracting the text from an article into a single string. Articles can also be searche dby ID, if IDs are known. The code includes a notebook demonstrating the extraction of a list of articles relating to ahandful of cities, based on the headline details.
 
 ## Requirements
-* Python 3.X
+* Python 3.8+
 * beautifulsoup4
 * tqdm
 * pandas
