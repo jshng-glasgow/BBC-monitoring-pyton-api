@@ -1,6 +1,6 @@
 # data
-data/
-!data/fake_key.json
+*.csv
+data/api_key.json
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
