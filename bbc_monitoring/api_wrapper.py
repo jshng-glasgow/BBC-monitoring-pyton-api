@@ -76,6 +76,8 @@ class BBCMonitoringApi:
             raise SubscriptionError()
         elif status_code == 403:
             raise TsAndCsError()
+        elif status_code == 429:
+            raise LimitExceededError()
         elif status_code == 500:
             raise InternalServerError()
                     
@@ -113,7 +115,10 @@ class BBCMonitoringApi:
             str : The text in the main body of the article.
         """
         # get the text html only, removing headers etc.
-        html_text = article['bodyHtml'].split('<p class="text">')[1]
+        try:
+            html_text = article['bodyHtml'].split('<p class="text">')[1]
+        except:
+            html_text = article['bodyHtml']
         soup = BeautifulSoup(html_text, features="html.parser")
         raw_text = soup.get_text()
         # split into lines
@@ -132,7 +137,10 @@ class BBCMonitoringApi:
         if limit:
             url += f'limit={limit}'
         result = self.session.get(url)
-        return result.json()
+        if result.status_code == 200:
+            return result.json()
+        else:
+            self.__raise_error(result.status_code)
     
     
     
