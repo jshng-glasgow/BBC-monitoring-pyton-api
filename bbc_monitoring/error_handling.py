@@ -17,6 +17,7 @@ class URLNotFoundError(Exception):
             self.message = f'{url} can not be found'
         super().__init__(self.message)
         
+        
 class AuthorizationError(Exception):
     """Exception raised login attempts with incorrect credentials.
     Attributes:
@@ -27,7 +28,6 @@ class AuthorizationError(Exception):
     Hidden attributed
         
     """
-    
     def __init__(self, credentials):
         # get username and password from credentials
         self.username = credentials.get('username')
@@ -37,6 +37,7 @@ class AuthorizationError(Exception):
         self.message = f'Unsuccessful authorization for username: {self.username} and password: {self.masked_password}'
         super().__init__(self.message)
         
+        
 class InternalServerError(Exception):
     """Exception for when BBC Monitoring has server connection issues
     Attributes:
@@ -45,6 +46,7 @@ class InternalServerError(Exception):
     def __init__(self):
         self.message = "BBC Monitoring can not currently be acccessed."
         super().__init__(self.message)
+        
         
 class SubscriptionError(Exception):
     """Exception to handel requests for content which are not available under 
@@ -56,7 +58,8 @@ class SubscriptionError(Exception):
         self.message = ("The requested content is not available under your current subscription.")
         super().__init__(self.message)
 
-class TsAndCsError():
+
+class TsAndCsError(Exception):
     """Exception to handle attempts to log in using an account which as not
     yet accepted the terms and conditions
     attributes:
@@ -65,4 +68,13 @@ class TsAndCsError():
     def __init__(self):
         self.message = ("BBC Monitoring Terms and Conditions not yet accepted.")
         super().__init__(self.message)
-        
+    
+    
+class LimitExceededError(Exception):
+    """Exception to handle request limit being exceeded.
+    attributes:
+        message : Explanation of the error.
+    """
+    def __init__(self):
+        self.message = ("The rate limit of 60 requests per second has been exceeded")
+        super().__init__(self.message)
